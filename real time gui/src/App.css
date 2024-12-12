@@ -1,7 +1,30 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+h3 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  color: #444;
+}
+
+/* Layout */
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
 }
 
 .layout {
@@ -10,18 +33,134 @@
   margin-top: 20px;
 }
 
-.left-panel, .right-panel {
+.left-panel,
+.right-panel {
   width: 48%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-form, .control-panel, .ticket-grid, .logs {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input,
+form button {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+/* Buttons */
+button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Table (TicketGrid) */
+.ticket-grid table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.ticket-grid th,
+.ticket-grid td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.ticket-grid th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.ticket-grid tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-button {
+/* Logs */
+.logs {
+  margin-top: 20px;
+}
+
+.logs ul {
+  list-style: none;
+  padding: 0;
+}
+
+.logs ul li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Control Panel */
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.control-panel button {
   margin: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

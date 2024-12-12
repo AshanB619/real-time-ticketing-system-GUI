@@ -6,11 +6,19 @@ const LogDisplay = () => {
 
   useEffect(() => {
     const fetchLogs = async () => {
-      const { data } = await getLogs();
-      setLogs(data);
+      try {
+        const { data } = await getLogs();
+        setLogs(data); // Update the logs
+      } catch (error) {
+        console.error('Error fetching logs:', error);
+      }
     };
 
     fetchLogs();
+
+    // Poll for new logs every 5 seconds
+    const interval = setInterval(fetchLogs, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

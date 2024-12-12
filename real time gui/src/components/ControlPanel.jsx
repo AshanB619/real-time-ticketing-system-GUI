@@ -1,47 +1,46 @@
 import React from 'react';
-import { addCustomer, removeCustomer, addVendor, removeVendor, startSimulation, stopSimulation } from '../services/api';
+import {
+  startSimulation,
+  stopSimulation,
+  addLog, // Import the new API function
+} from '../services/api';
 
-const ControlPanel = () => {
-  const handleAddCustomer = async () => {
-    const customer = { customer_Name: 'Customer A', total_Ticket_By_Customer: 10, vip_cus: true };
-    await addCustomer(customer);
-    alert('Customer added!');
-  };
-
-  const handleRemoveCustomer = async () => {
-    await removeCustomer(1);
-    alert('Customer removed!');
-  };
-
-  const handleAddVendor = async () => {
-    const vendor = { vendor_Name: 'Vendor A', total_Ticket_By_Vendor: 10 };
-    await addVendor(vendor);
-    alert('Vendor added!');
-  };
-
-  const handleRemoveVendor = async () => {
-    await removeVendor(1);
-    alert('Vendor removed!');
-  };
-
+const ControlPanel = ({
+  onAddCustomerClick,
+  onAddVendorClick,
+  onRemoveCustomerClick,
+  onRemoveVendorClick,
+}) => {
   const handleStartSimulation = async () => {
-    await startSimulation();
-    alert('Simulation started!');
+    try {
+      await startSimulation();
+      await addLog('Simulation started successfully'); // Add log message
+      alert('Simulation started!');
+    } catch (error) {
+      console.error('Error starting simulation:', error);
+      alert('Error starting simulation');
+    }
   };
 
   const handleStopSimulation = async () => {
-    await stopSimulation();
-    alert('Simulation stopped!');
+    try {
+      await stopSimulation();
+      await addLog('Simulation stopped successfully'); // Add log message
+      alert('Simulation stopped!');
+    } catch (error) {
+      console.error('Error stopping simulation:', error);
+      alert('Error stopping simulation');
+    }
   };
 
   return (
     <div className="control-panel">
       <button onClick={handleStartSimulation}>Start</button>
       <button onClick={handleStopSimulation}>Stop</button>
-      <button onClick={handleAddCustomer}>Add Customer</button>
-      <button onClick={handleRemoveCustomer}>Remove Customer</button>
-      <button onClick={handleAddVendor}>Add Vendor</button>
-      <button onClick={handleRemoveVendor}>Remove Vendor</button>
+      <button onClick={onAddCustomerClick}>Add Customer</button>
+      <button onClick={onAddVendorClick}>Add Vendor</button>
+      <button onClick={onRemoveCustomerClick}>Remove Customer</button>
+      <button onClick={onRemoveVendorClick}>Remove Vendor</button>
     </div>
   );
 };
